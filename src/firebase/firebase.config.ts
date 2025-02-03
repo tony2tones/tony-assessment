@@ -1,5 +1,5 @@
 import { initializeApp, getApps, getApp } from "firebase/app";
-import {getAuth} from 'firebase/auth';
+import { getAuth} from 'firebase/auth';
 
 const firebaseConfig = {
   // need to figure out why this api key fails in certain format
@@ -10,11 +10,9 @@ const firebaseConfig = {
   messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGE_SENDER_ID,
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
 };
-// measurementId: "G-987KW9Z61T"
 
 // Initialize Firebase
 const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
 
 const auth = getAuth(app)
-
-export {app, auth}
+export{app, auth}

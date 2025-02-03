@@ -2,7 +2,7 @@
 
 import {useState} from 'react';
 import {useSignInWithEmailAndPassword} from 'react-firebase-hooks/auth'
-import {auth} from '@/firebase/firebase.config'
+import {auth} from '../../firebase/firebase.config'
 import { useRouter } from 'next/navigation';
 
 const SignIn = () => {

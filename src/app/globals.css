@@ -19,3 +19,15 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+h1 {
+  @apply text-2xl font-semibold text-slate-950;
+}
+
+p {
+  @apply text-sm font-normal text-slate-500;
+}
+
+label {
+  @apply text-sm font-medium text-slate-950;
+}

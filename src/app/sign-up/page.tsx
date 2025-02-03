@@ -1,24 +1,26 @@
 'use client'
 
 import {useState} from 'react';
+import {useRouter} from 'next/navigation';
 import {useCreateUserWithEmailAndPassword} from 'react-firebase-hooks/auth'
-import {auth} from '@/firebase/firebase.config';
+import { auth } from '../../firebase/firebase.config';
 
 const SignUp = () => {
+  const router = useRouter()
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const [createUserWithEmailAndPassword] = useCreateUserWithEmailAndPassword(auth);
 
-  const handleSignUp = async() => {
-    console.log({auth})
+  const onSubmit = async () => {
     try {
       const res = await createUserWithEmailAndPassword(email, password);
-      console.log({res})
-      setEmail('')
-      setPassword('')
-    } catch(e) {
-      console.error('an error has occurred', e)
+      setEmail('');
+      setPassword('');
+      router.push('/')
+
+    } catch (e) {
+      console.log(e)
     }
   }
 
@@ -26,6 +28,7 @@ const SignUp = () => {
     <div className='min-h-screen flex items-center justify-center bg-gray-900'>
       <div className='bg-gray-800 p-10 rounded-lg shadow-xl w-96'>
         <h1 className='text-white text-2xl mb-5'>Sign Up</h1>
+        <form onSubmit={onSubmit}>
         <input 
         type='email'
          placeholder='Please enter email'
@@ -41,7 +44,8 @@ const SignUp = () => {
          onChange={(e) => setPassword(e.target.value)}
           className='w-full p-3 mb-4 bg-gray-700 rounded outline-none text-white placeholder-gray-500'
          />
-         <button className='text-white w-full p-3 bg-indigo-600 rounded hover:bg-indigo-500' onClick={handleSignUp}>Sign up</button>
+         <button className='text-white w-full p-3 bg-indigo-600 rounded hover:bg-indigo-500' type='submit'>Sign up</button>
+         </form>
       </div>
     </div>
   )
